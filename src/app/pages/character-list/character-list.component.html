@@ -1,0 +1,23 @@
+@if(errorMessage) {
+<div>
+    <p>{{ errorMessage }}</p>
+</div>
+}
+
+@if(characters.length > 0) {
+<h1>Personagens de Ricky and Morty</h1>
+<ul>
+    @for(character of characters; track character.id) {
+    <li>
+        <a class="border-l" [routerLink]="['/personagens', character.id]">
+            <img [src]="character.image" [alt]="character.name">
+            <h2>{{ character.name }}</h2>
+            <p>Status: {{ character.status }}</p>
+            <p>Espécie: {{ character.species }}</p>
+        </a>
+    </li>
+    }
+</ul>
+} @else {
+<p>Carregando...</p>
+}
