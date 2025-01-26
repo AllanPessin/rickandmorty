@@ -4,20 +4,34 @@
 </div>
 }
 
-@if(characters.length > 0) {
-<h1>Personagens de Ricky and Morty</h1>
-<ul>
-    @for(character of characters; track character.id) {
-    <li>
-        <a class="border-l" [routerLink]="['/personagens', character.id]">
-            <img [src]="character.image" [alt]="character.name">
-            <h2>{{ character.name }}</h2>
-            <p>Status: {{ character.status }}</p>
-            <p>Espécie: {{ character.species }}</p>
-        </a>
-    </li>
+<main class="px-10">
+    @if(characters.length > 0) {
+    <div class="py-5">
+        <h1 class="text-2xl">Personagens de Ricky and Morty</h1>
+    </div>
+    <div>
+        <ul class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-4">
+            @for(character of characters; track character.id) {
+            <li class="">
+                <a class="flex flex-row bg-gray-200 rounded-xl" [routerLink]="['/personagens', character.id]">
+                    <img [src]="character.image" [alt]="character.name">
+                    <div class="flex flex-col py-5 px-5">
+                        <h2 class="text-white hover:text-yellow duration-200 ease-in">{{ character.name }}</h2>
+                        @if(character.status === 'Alive') {
+                            <!-- <p>
+                                <fa-icon [icon]="faCircle"></fa-icon>
+                                {{ character.status }}
+                            </p> -->
+                            <!-- <p><i class="fa-regular fa-circle text-red-600"></i> {{ character.status }}</p> -->
+                        }
+                        <p>Espécie: {{ character.species }}</p>
+                    </div>
+                </a>
+            </li>
+            }
+        </ul>
+    </div>
+    } @else {
+    <p>Carregando...</p>
     }
-</ul>
-} @else {
-<p>Carregando...</p>
-}
+</main>

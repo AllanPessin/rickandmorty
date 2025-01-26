@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Character, CharacterService } from '../../service/character.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-character-list',
-  imports: [RouterModule],
+  imports: [RouterModule, FontAwesomeModule],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.css'
 })
 export class CharacterListComponent {
+  faCircle = "fa-regular fa-circle";
   characters: Character[] = [];
   errorMessage: string | null = null;
 

@@ -1,18 +1,22 @@
-<header>
-    <nav>
-        <ul>
-            <li>
-                <a routerLink="/" routerLinkActive="active">Inicial</a>
-            </li>
-            <li>
-                <a routerLink="/personagens" routerLinkActive="active">Personagens</a>
-            </li>
-            <li>
-                <a routerLink="/episodios" routerLinkActive="active">Episódios</a>
-            </li>
-            <li>
-                <a routerLink="/localizacoes" routerLinkActive="active">Localizações</a>
-            </li>
+<header class="flex justify-between min-h-16 items-center">
+    <section class="w-[33%]">
+        <app-nav-link link="/" label="Inicial"></app-nav-link>
+    </section>
+
+    <section class="w-[33%] flex justify-center">
+        <a routerLink="/">
+            <img [src]="imagePath" alt="Logo" class="w-20">
+        </a>
+
+    </section>
+
+    <nav class="w-[33%] flex justify-end">
+        <ul class="flex items-center gap-2 ">
+            @for(item of navLinks; track item.label) {
+                <li>
+                    <app-nav-link [link]="item.link" [label]="item.label"></app-nav-link>
+                </li>
+            }
         </ul>
     </nav>
 </header>
