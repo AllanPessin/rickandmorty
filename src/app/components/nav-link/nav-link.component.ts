@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
   selector: 'app-nav-link',
   imports: [RouterModule],
   templateUrl: './nav-link.component.html',
-  styleUrl: './nav-link.component.css'
+  styleUrl: './nav-link.component.css',
 })
 export class NavLinkComponent {
-  @Input() link: string = ''
-  @Input() label: string = ''
-
+  @Input() link: string = '';
+  @Input() label: string = '';
 }

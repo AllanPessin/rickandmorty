@@ -6,30 +6,32 @@ import { Character, CharacterService } from '../../service/character.service';
   selector: 'app-character-detail',
   imports: [],
   templateUrl: './character-detail.component.html',
-  styleUrl: './character-detail.component.css'
+  styleUrl: './character-detail.component.css',
 })
 export class CharacterDetailComponent {
-  character: Character | null = null
-  errorMessage: string | null = null
+  character: Character | null = null;
+  errorMessage: string | null = null;
 
   constructor(
     private characterService: CharacterService,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+  ) {}
 
-  ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id')
+  ngOnInit(): void {
+    const id: string | null = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.loadCharacterById(+id)
+      this.loadCharacterById(+id);
     }
   }
 
-  loadCharacterById(id: number) {
+  loadCharacterById(id: number): void {
     this.characterService.getCharacterByID(id).subscribe({
-      next: (response) => {
-        this.character = response
-      }
-    })
-
+      next: (response: Character): void => {
+        this.character = response;
+      },
+      error: (err: any): any => {
+        return (this.errorMessage = err);
+      },
+    });
   }
 }

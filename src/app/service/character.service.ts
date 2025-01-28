@@ -14,39 +14,45 @@ export interface ApiResponse<T> {
 }
 
 export interface Character {
-  id: number
-  name: string
-  status: string
-  species: string
-  type: string
-  gender: string
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
   origin: {
-    name: string
-    url: string
-  }
+    name: string;
+    url: string;
+  };
   location: {
-    name: string
-    url: string
-  }
-  image: string
-  episode: Array<String>
-  url: string
-  created: string
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: Array<String>;
+  url: string;
+  created: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharacterService {
-  private url: string = environment.API_URL
+  private url: string = environment.API_URL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCharacter(): Observable<ApiResponse<Character>> {
-    return this.http.get<ApiResponse<Character>>(`${this.url}/character`)
+    return this.http.get<ApiResponse<Character>>(`${this.url}/character`);
   }
 
   getCharacterByID(id: number): Observable<Character> {
-    return this.http.get<Character>(`${this.url}/character/${id}`)
+    return this.http.get<Character>(`${this.url}/character/${id}`);
+  }
+
+  searchCharacter(name: string): Observable<ApiResponse<Character>> {
+    return this.http.get<ApiResponse<Character>>(
+      `${this.url}/character/?name=${name}`,
+    );
   }
 }

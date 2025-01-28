@@ -5,10 +5,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    // { path: '', redirectTo: '/', pathMatch: 'full' },
-    { path: 'personagens', component: CharacterListComponent },
-    { path: 'personagens/:id', component: CharacterDetailComponent },
-    {path: '**', redirectTo: '/'}
-
+  { path: '', component: HomeComponent },
+  { path: 'personagens', component: CharacterListComponent },
+  { path: 'personagens/:id', component: CharacterDetailComponent },
+  { path: 'localizacoes', component: CharacterListComponent },
+  { path: 'episodios', component: CharacterListComponent },
+  { path: '**', redirectTo: '/' },
 ];

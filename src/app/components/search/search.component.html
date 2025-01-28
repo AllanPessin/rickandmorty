@@ -1,0 +1,15 @@
+<form (submit)="onSearch(); $event.preventDefault()" class="p-2 px-4 mb-4">
+    <div class="mb-2 bg-white shadow-md">
+        <input type="text" name="search" id="search" [(ngModel)]="searchQuery" placeholder="Pesquise por um personagem"
+            (keyup.enter)="onSearch()"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+    </div>
+    <div class="flex items-center justify-between">
+        <button (click)="onSearch()"
+            class="rounded shadow-sm bg-white border-2 border-gray-200 px-4 hover:shadow-md duration-200 ease-in">Pesquisa</button>
+        <button type="reset"
+            class="rounded shadow-sm px-4 text-red-500 border-2 border-red-500 hover:shadow-md duration-200 ease-in">Limpar</button>
+
+    </div>
+
+</form>

@@ -14,24 +14,24 @@ export interface ApiResponse<T> {
 }
 
 export interface Episode {
-  id: number
-  name: string
-  air_date: string
-  episode: string
-  characters: Array<string>
-  url: string
-  created: string
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  characters: Array<string>;
+  url: string;
+  created: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EpisodeService {
-  private url: string = environment.API_URL
+  private url: string = environment.API_URL;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getEpisode(): Observable<ApiResponse<Episode>> {
-    return this.http.get<ApiResponse<Episode>>(`${this.url}/episode`)
+    return this.http.get<ApiResponse<Episode>>(`${this.url}/episode`);
   }
 }
