@@ -1,0 +1,27 @@
+<div class="pagination flex items-center justify-between p-4 border-t">
+    <!-- Botão Anterior -->
+    <button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 1"
+        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
+        Anterior
+    </button>
+
+    <!-- Informações de Página -->
+    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+
+    <!-- Seletor de Itens por Página -->
+    <div class="flex items-center space-x-2">
+        <label for="pageSize">Items per page:</label>
+        <select id="pageSize" [(ngModel)]="pageSize" (change)="onPageSizeChange($event)"
+            class="px-2 py-1 border rounded">
+            <option *ngFor="let size of pageSizeOptions" [value]="size">
+                {{ size }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Botão Próximo -->
+    <button (click)="onPageChange(currentPage + 1)" [disabled]="currentPage === totalPages"
+        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 disabled:opacity-50">
+        Próxima
+    </button>
+</div>

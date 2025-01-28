@@ -7,10 +7,17 @@ import { NgFor } from '@angular/common';
 import { ApiResponse } from '../../service/episode.service';
 import { Subject } from 'rxjs';
 import { SearchComponent } from '../../components/search/search.component';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-character-list',
-  imports: [RouterModule, FontAwesomeModule, NgFor, SearchComponent],
+  imports: [
+    RouterModule,
+    FontAwesomeModule,
+    NgFor,
+    SearchComponent,
+    PaginationComponent,
+  ],
   templateUrl: './character-list.component.html',
   styleUrl: './character-list.component.css',
 })
@@ -19,25 +26,46 @@ export class CharacterListComponent {
   characters: Character[] = [];
   errorMessage: string | null = null;
 
+  currentPage: number = 1;
+  totalPages: number = 1;
+  pageSize: number = 20;
+  totalResults: number = 0;
+
   constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
     this.loadCharacters();
   }
 
+  //   loadCharacters(): void {
+  //     this.characterService.getCharacter().subscribe({
+  //       next: (response: ApiResponse<Character>): void => {
+  //         this.characters = response.results;
+  //       },
+  //       error: (err: any): void => {
+  //         this.errorMessage = err.message;
+  //       },
+  //     });
+  //   }
+
   loadCharacters(): void {
-    this.characterService.getCharacter().subscribe({
-      next: (response: ApiResponse<Character>): void => {
-        this.characters = response.results;
-      },
-      error: (err: any): void => {
-        this.errorMessage = err.message;
-      },
-    });
+    this.characterService
+      .getCharactersByPage(this.currentPage, this.pageSize)
+      .subscribe({
+        next: (response: ApiResponse<Character>): void => {
+          this.characters = response.results;
+          this.totalPages = response.info.pages;
+          this.totalResults = response.info.count;
+        },
+        error: (err: any): void => {
+          this.errorMessage = err.message;
+        },
+      });
   }
 
   searchCharacter(query: string): void {
     if (!query.trim()) {
+      this.currentPage = 1;
       this.loadCharacters();
       return;
     }
@@ -45,10 +73,26 @@ export class CharacterListComponent {
     this.characterService.searchCharacter(query).subscribe({
       next: (response: ApiResponse<Character>): void => {
         this.characters = response.results;
+        this.totalPages = response.info.pages;
+        this.totalResults = response.info.count;
+        this.currentPage = 1;
       },
       error: (err: any): void => {
         this.errorMessage = err.message;
       },
     });
+  }
+
+  changePage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+      this.loadCharacters();
+    }
+  }
+
+  onPageSizeChange(size: number): void {
+    this.pageSize = size;
+    this.currentPage = 1;
+    this.loadCharacters();
   }
 }

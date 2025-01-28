@@ -55,4 +55,13 @@ export class CharacterService {
       `${this.url}/character/?name=${name}`,
     );
   }
+
+  getCharactersByPage(
+    page: number,
+    pageSize: number,
+  ): Observable<ApiResponse<Character>> {
+    return this.http.get<ApiResponse<Character>>(
+      `${this.url}/character/?page=${page}&limti=${pageSize}`,
+    );
+  }
 }
