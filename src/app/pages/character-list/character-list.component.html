@@ -6,31 +6,37 @@
 
 <main class="px-10">
     @if (characters.length > 0) {
-    <div class="py-5 flex items-baseline justify-between">
+    <div class="flex items-baseline justify-between py-5">
         <h1 class="text-2xl">Personagens de Ricky and Morty</h1>
         <app-search (searchEvent)="searchCharacter($event)"></app-search>
     </div>
     <div>
-        <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <li *ngFor="let character of characters">
-                <a class="flex flex-col rounded-xl bg-gray-200 md:flex-row"
-                    [routerLink]="['/personagens', character.id]">
-                    <img [src]="character.image" [alt]="character.name"
-                        class="h-full w-full rounded-s-none md:h-40 md:w-40 md:rounded-s-lg" />
-                    <div class="flex flex-col px-5 py-5">
-                        <h2 class="text-2xl font-bold text-white duration-200 ease-in hover:text-yellow">
-                            {{ character.name }}
-                        </h2>
+                <div class="flex flex-col rounded-xl bg-gray-200 md:flex-row">
+                    <a [routerLink]="['/personagens', character.id]">
+                        <img [src]="character.image" [alt]="character.name"
+                            class="h-full w-full rounded-s-none md:h-44 md:w-44 md:rounded-s-lg" />
+                    </a>
+                    <div class="flex flex-col gap-2 px-5 py-5">
+                        <a [routerLink]="['/personagens', character.id]">
+                            <h2 class="text-2xl font-bold text-white duration-200 ease-in hover:text-yellow">
+                                {{ character.name }}
+                            </h2>
+                        </a>
                         <p class="flex items-center gap-1 text-white">
                             <fa-icon [icon]="faCircle" size="xs" [class.text-green-500]="character.status === 'Alive'"
                                 [class.text-yellow]="character.status === 'unknown'"
                                 [class.text-red-500]="character.status === 'Dead'" class="block">
                             </fa-icon>
-                            {{ character.status | translation }}
+                            {{ character.status | statusTranslate }}
                         </p>
-                        <p class="text-white">Espécie: {{ character.species }}</p>
+                        <p class="text-white"><b>Espécie: </b>{{ character.species }}</p>
+                        <p class="text-white">
+                            <b>Origem:</b> {{ character.origin.name }}
+                        </p>
                     </div>
-                </a>
+                </div>
             </li>
         </ul>
     </div>

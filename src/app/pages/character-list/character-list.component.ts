@@ -1,17 +1,17 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Character, CharacterService } from '../../service/character.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
-    faCircle,
-    faChevronRight,
     faChevronLeft,
+    faChevronRight,
+    faCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { NgFor } from '@angular/common';
-import { ApiResponse } from '../../service/episode.service';
-import { SearchComponent } from '../../components/search/search.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
-import { TranslationPipe } from '../../pipes/translation.pipe';
+import { SearchComponent } from '../../components/search/search.component';
+import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
+import { Character, CharacterService } from '../../service/character.service';
+import { ApiResponse } from '../../service/episode.service';
 
 @Component({
     selector: 'app-character-list',
@@ -21,7 +21,7 @@ import { TranslationPipe } from '../../pipes/translation.pipe';
         NgFor,
         SearchComponent,
         PaginationComponent,
-        TranslationPipe,
+        StatusTranslatePipe,
     ],
     templateUrl: './character-list.component.html',
     styleUrl: './character-list.component.css',

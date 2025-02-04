@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'translation',
+    name: 'statusTranslate',
 })
-export class TranslationPipe implements PipeTransform {
+export class StatusTranslatePipe implements PipeTransform {
     transform(value: string): string {
         const translations: { [key: string]: string } = {
             Alive: 'Vivo',
