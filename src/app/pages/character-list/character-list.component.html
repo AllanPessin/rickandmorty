@@ -26,17 +26,16 @@
                                 [class.text-yellow]="character.status === 'unknown'"
                                 [class.text-red-500]="character.status === 'Dead'" class="block">
                             </fa-icon>
-                            {{ character.status }}
+                            {{ character.status | translation }}
                         </p>
-                        <p>Espécie: {{ character.species }}</p>
+                        <p class="text-white">Espécie: {{ character.species }}</p>
                     </div>
                 </a>
             </li>
         </ul>
     </div>
     <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" [pageSize]="pageSize"
-        [pageSizeOptions]="[10, 20, 50]" (pageChange)="changePage($event)"
-        (pageSizeChange)="onPageSizeChange($event)"></app-pagination>
+        [pageSizeOptions]="[10, 20, 50]" (pageChange)="changePage($event)"></app-pagination>
     } @else {
     <p>Carregando...</p>
     }
