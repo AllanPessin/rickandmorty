@@ -45,19 +45,17 @@ export class CharacterListComponent implements OnInit {
     }
 
     loadCharacters(): void {
-        this.characterService
-            .getCharactersByPage(this.currentPage, this.pageSize)
-            .subscribe({
-                next: (response: ApiResponse<Character>): void => {
-                    console.log(response);
-                    this.characters = response.results;
-                    this.totalPages = response.info.pages;
-                    this.totalResults = response.info.count;
-                },
-                error: (err: any): void => {
-                    this.errorMessage = err.message;
-                },
-            });
+        this.characterService.getCharactersByPage(this.currentPage).subscribe({
+            next: (response: ApiResponse<Character>): void => {
+                console.log(response);
+                this.characters = response.results;
+                this.totalPages = response.info.pages;
+                this.totalResults = response.info.count;
+            },
+            error: (err: any): void => {
+                this.errorMessage = err.message;
+            },
+        });
     }
 
     searchCharacter(query: string | null): void {
