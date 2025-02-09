@@ -10,35 +10,45 @@
         <h1 class="text-2xl">Personagens de Ricky and Morty</h1>
         <app-search (searchEvent)="searchCharacter($event)"></app-search>
     </div>
-    <div>
-        <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <li *ngFor="let character of characters">
-                <div class="flex flex-col rounded-xl bg-gray-200 md:flex-row">
-                    <a [routerLink]="['/personagens', character.id]">
-                        <img [src]="character.image" [alt]="character.name"
-                            class="h-full w-full rounded-s-none md:h-44 md:w-44 md:rounded-s-lg" />
-                    </a>
-                    <div class="flex flex-col gap-2 px-5 py-5">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-7">
+
+        <aside class="col-span-4 lg:col-span-1">
+            <p>Filtro</p>
+            <app-filter (statusEvent)="filterStatus($event)"></app-filter>
+        </aside>
+
+        <div class="col-span-4 lg:col-span-3">
+            <ul class="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2">
+                <li *ngFor="let character of characters">
+                    <div class="flex flex-col rounded-xl bg-gray-200 md:flex-row">
                         <a [routerLink]="['/personagens', character.id]">
-                            <h2 class="text-2xl font-bold text-white duration-200 ease-in hover:text-yellow">
-                                {{ character.name }}
-                            </h2>
+                            <img [src]="character.image" [alt]="character.name"
+                                class="h-full w-full rounded-s-none md:h-44 md:w-44 md:rounded-s-lg" />
                         </a>
-                        <p class="flex items-center gap-1 text-white">
-                            <fa-icon [icon]="faCircle" size="xs" [class.text-green-500]="character.status === 'Alive'"
-                                [class.text-yellow]="character.status === 'unknown'"
-                                [class.text-red-500]="character.status === 'Dead'" class="block">
-                            </fa-icon>
-                            {{ character.status | statusTranslate }}
-                        </p>
-                        <p class="text-white"><b>Espécie: </b>{{ character.species }}</p>
-                        <p class="text-white">
-                            <b>Origem:</b> {{ character.origin.name }}
-                        </p>
+                        <div class="flex flex-col gap-1 px-4 py-4">
+                            <a [routerLink]="['/personagens', character.id]">
+                                <h2
+                                    class="text-lg lg:text-xl font-bold text-white duration-200 ease-in hover:text-yellow ">
+                                    {{ character.name }}
+                                </h2>
+                            </a>
+                            <p class="flex items-center gap-1 text-white">
+                                <fa-icon [icon]="faCircle" size="xs"
+                                    [class.text-green-500]="character.status === 'Alive'"
+                                    [class.text-yellow]="character.status === 'unknown'"
+                                    [class.text-red-500]="character.status === 'Dead'" class="block">
+                                </fa-icon>
+                                {{ character.status | statusTranslate }}
+                            </p>
+                            <p class="text-white"><b>Espécie: </b>{{ character.species }}</p>
+                            <p class="text-white">
+                                <b>Origem:</b> {{ character.origin.name }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <app-pagination [currentPage]="currentPage" [totalPages]="totalPages" [pageSize]="pageSize"
         [pageSizeOptions]="[10, 20, 50]" (pageChange)="changePage($event)"></app-pagination>

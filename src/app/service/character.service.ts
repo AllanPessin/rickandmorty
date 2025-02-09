@@ -61,4 +61,13 @@ export class CharacterService {
             `${this.url}/character/?page=${page}`
         );
     }
+
+    filterCharacterByStatus(
+        status: string,
+        page: number
+    ): Observable<ApiResponse<Character>> {
+        return this.http.get<ApiResponse<Character>>(
+            `${this.url}/character/?status=${status}&page=${page}`
+        );
+    }
 }

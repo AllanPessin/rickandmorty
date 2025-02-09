@@ -12,6 +12,7 @@ import { SearchComponent } from '../../components/search/search.component';
 import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
 import { Character, CharacterService } from '../../service/character.service';
 import { ApiResponse } from '../../service/episode.service';
+import { FilterComponent } from '../../components/filter/filter.component';
 
 @Component({
     selector: 'app-character-list',
@@ -22,6 +23,7 @@ import { ApiResponse } from '../../service/episode.service';
         SearchComponent,
         PaginationComponent,
         StatusTranslatePipe,
+        FilterComponent,
     ],
     templateUrl: './character-list.component.html',
     styleUrl: './character-list.component.css',
@@ -38,6 +40,8 @@ export class CharacterListComponent implements OnInit {
     pageSize: number = 20;
     totalResults: number = 0;
 
+    selectedStatus: string | null = null;
+
     constructor(private characterService: CharacterService) {}
 
     ngOnInit(): void {
@@ -45,17 +49,22 @@ export class CharacterListComponent implements OnInit {
     }
 
     loadCharacters(): void {
-        this.characterService.getCharactersByPage(this.currentPage).subscribe({
-            next: (response: ApiResponse<Character>): void => {
-                console.log(response);
-                this.characters = response.results;
-                this.totalPages = response.info.pages;
-                this.totalResults = response.info.count;
-            },
-            error: (err: any): void => {
-                this.errorMessage = err.message;
-            },
-        });
+        if (this.selectedStatus) {
+            this.filterStatus(this.selectedStatus);
+        } else {
+            this.characterService
+                .getCharactersByPage(this.currentPage)
+                .subscribe({
+                    next: (response: ApiResponse<Character>): void => {
+                        this.characters = response.results;
+                        this.totalPages = response.info.pages;
+                        this.totalResults = response.info.count;
+                    },
+                    error: (err: any): void => {
+                        this.errorMessage = err.message;
+                    },
+                });
+        }
     }
 
     searchCharacter(query: string | null): void {
@@ -83,5 +92,23 @@ export class CharacterListComponent implements OnInit {
             this.currentPage = page;
             this.loadCharacters();
         }
+    }
+
+    filterStatus(status: string) {
+        this.selectedStatus = status;
+
+        this.characterService
+            .filterCharacterByStatus(status, this.currentPage)
+            .subscribe({
+                next: (response: ApiResponse<Character>): void => {
+                    this.characters = response.results;
+                    this.totalPages = response.info.pages;
+                    this.totalResults = response.info.count;
+                    this.currentPage = 1;
+                },
+                error: (err: any): void => {
+                    this.errorMessage = err.message;
+                },
+            });
     }
 }

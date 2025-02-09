@@ -1,0 +1,9 @@
+<div class="flex flex-col">
+    <label for="status">Selecione um status</label>
+    <select name="status" id="status" [(ngModel)]="statusOption" (ngModelChange)="onFilterStatus()"
+        class="shadow  border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+        <option value="Alive">Vivo</option>
+        <option value="Dead">Morto</option>
+        <option value="unknown">Desocnhecido</option>
+    </select>
+</div>
