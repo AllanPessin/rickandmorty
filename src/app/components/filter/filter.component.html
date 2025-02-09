@@ -1,9 +1,31 @@
 <div class="flex flex-col">
     <label for="status">Selecione um status</label>
-    <select name="status" id="status" [(ngModel)]="statusOption" (ngModelChange)="onFilterStatus()"
-        class="shadow  border rounded py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline">
+    <select
+        name="status"
+        id="status"
+        [(ngModel)]="status"
+        (ngModelChange)="onFilterStatus()"
+        class="focus:shadow-outline rounded border px-3 py-2 text-gray-700 shadow focus:outline-none"
+    >
         <option value="Alive">Vivo</option>
         <option value="Dead">Morto</option>
-        <option value="unknown">Desocnhecido</option>
+        <option value="unknown">Desconhecido</option>
+    </select>
+</div>
+
+<div class="flex flex-col">
+    <label for="gender">Selecione um gênero</label>
+    <select
+        name="gender"
+        id="gender"
+        [(ngModel)]="gender"
+        (ngModelChange)="onFilterGender()"
+        class="focus:shadow-outline rounded border px-3 py-2 text-gray-700 shadow focus:outline-none"
+    >
+        <option value=""></option>
+        <option value="female">Mulher</option>
+        <option value="male">Homem</option>
+        <option value="genderless">sem gênero</option>
+        <option value="unknown">Desconhecido</option>
     </select>
 </div>

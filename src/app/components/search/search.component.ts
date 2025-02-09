@@ -12,8 +12,6 @@ export class SearchComponent {
     @Output() searchEvent = new EventEmitter<string | null>();
 
     onSearch(): void {
-        this.searchEvent.emit(
-            this.searchQuery.trim() ? this.searchQuery : null
-        );
+        this.searchEvent.emit(this.searchQuery.trim() ? this.searchQuery : null);
     }
 }

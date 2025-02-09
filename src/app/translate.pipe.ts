@@ -1,12 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'translate'
+    name: 'translate',
 })
 export class TranslatePipe implements PipeTransform {
-
-  transform(value: unknown, ...args: unknown[]): unknown {
-    return null;
-  }
-
+    transform(value: unknown, ...args: unknown[]): unknown {
+        return null;
+    }
 }

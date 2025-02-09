@@ -8,10 +8,24 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './filter.component.css',
 })
 export class FilterComponent {
-    statusOption: string = '';
+    status: string = '';
+    species: string = '';
+    gender: string = '';
+
     @Output() statusEvent = new EventEmitter<string>();
+    @Output() speciesEvent = new EventEmitter<string>();
+    @Output() typeEvent = new EventEmitter<string>();
+    @Output() genderEvent = new EventEmitter<string>();
 
     onFilterStatus() {
-        this.statusEvent.emit(this.statusOption);
+        this.statusEvent.emit(this.status);
+    }
+
+    onFilterSpecies() {
+        this.speciesEvent.emit(this.species);
+    }
+
+    onFilterGender() {
+        this.genderEvent.emit(this.gender);
     }
 }

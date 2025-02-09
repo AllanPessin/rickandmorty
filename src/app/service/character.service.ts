@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 
 export interface ApiResponse<T> {
@@ -42,32 +42,28 @@ export class CharacterService {
 
     constructor(private http: HttpClient) {}
 
-    getCharacter(): Observable<ApiResponse<Character>> {
-        return this.http.get<ApiResponse<Character>>(`${this.url}/character`);
-    }
-
-    getCharacterByID(id: number): Observable<Character> {
-        return this.http.get<Character>(`${this.url}/character/${id}`);
-    }
-
-    searchCharacter(name: string): Observable<ApiResponse<Character>> {
-        return this.http.get<ApiResponse<Character>>(
-            `${this.url}/character/?name=${name}`
-        );
-    }
-
-    getCharactersByPage(page: number): Observable<ApiResponse<Character>> {
-        return this.http.get<ApiResponse<Character>>(
-            `${this.url}/character/?page=${page}`
-        );
-    }
-
-    filterCharacterByStatus(
-        status: string,
-        page: number
+    getCharacters(
+        id?: number,
+        name?: string,
+        page?: number,
+        status?: string,
+        species?: string,
+        type?: string,
+        gender?: string
     ): Observable<ApiResponse<Character>> {
-        return this.http.get<ApiResponse<Character>>(
-            `${this.url}/character/?status=${status}&page=${page}`
-        );
+        let params = new URLSearchParams();
+        if (id) params.append('id', id.toString());
+        if (name) params.append('name', name);
+        if (page) params.append('page', page.toString());
+        if (status) params.append('status', status);
+        if (species) params.append('species', species);
+        if (type) params.append('type', type);
+        if (gender) params.append('gender', gender);
+
+        return this.http.get<ApiResponse<Character>>(`${this.url}/character/?${params.toString()}`);
+    }
+
+    getCharacterById(id: number): Observable<Character> {
+        return this.http.get<Character>(`${this.url}/character/${id}`);
     }
 }
