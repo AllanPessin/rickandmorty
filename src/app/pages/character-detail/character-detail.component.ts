@@ -1,16 +1,21 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
 import { Character, CharacterService } from '../../service/character.service';
 
 @Component({
     selector: 'app-character-detail',
-    imports: [],
+    imports: [FontAwesomeModule, StatusTranslatePipe, CommonModule, RouterModule],
     templateUrl: './character-detail.component.html',
     styleUrl: './character-detail.component.css',
 })
 export class CharacterDetailComponent {
     character: Character | null = null;
     errorMessage: string | null = null;
+    faCircle = faCircle;
 
     constructor(
         private characterService: CharacterService,

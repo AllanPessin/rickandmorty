@@ -5,23 +5,56 @@
 }
 
 @if (character) {
-    <div class="character-detail">
-        <img [src]="character.image" [alt]="character.name" />
-        <h1 class="flex h-[100px] w-3 flex-1 text-red-200 hue-rotate-0">
-            {{ character.name }}
-        </h1>
-        <p>Status: {{ character.status }}</p>
-        <p>Espécie: {{ character.species }}</p>
-        <p>Gênero: {{ character.gender }}</p>
-        <p>Origem: {{ character.origin.name }}</p>
-        <p>Localização: {{ character.location.name }}</p>
-        <!-- <h2>Episódios:</h2>
-      <ul>
-        @for (episode of character.episode; track $index) {
-          <li>{{ episode }}</li>
-        }
-      </ul> -->
-    </div>
+    <main class="px-4 pt-9 md:px-10">
+        <div class="grid grid-cols-3 gap-8">
+            <div class="col-span-1">
+                <h2>Episódios:</h2>
+                <ul>
+                    @for (episode of character.episode.slice(0, 10); track $index) {
+                        <a [routerLink]="['/episodios', 'location.id']">
+                            <li>{{ episode }}</li>
+                        </a>
+                    }
+                </ul>
+            </div>
+
+            <div class="col-span-2 flex grid-cols-subgrid flex-row gap-12 align-top">
+                <picture class="">
+                    <img [src]="character.image" [alt]="character.name" class="w-full max-w-80" />
+                </picture>
+
+                <div class="col-start-3">
+                    <h1
+                        class="text-lg font-bold duration-200 ease-in hover:text-green-600 lg:text-xl"
+                    >
+                        {{ character.name }}
+                    </h1>
+                    <p
+                        class="flex items-center gap-2 duration-200 ease-in"
+                        [class.hover:text-green-500]="character.status === 'Alive'"
+                        [class.hover:text-yellow]="character.status === 'unknown'"
+                        [class.hover:text-red-500]="character.status === 'Dead'"
+                    >
+                        <b>Status:</b>
+                        <fa-icon
+                            [icon]="faCircle"
+                            size="xs"
+                            [class.text-green-500]="character.status === 'Alive'"
+                            [class.text-yellow]="character.status === 'unknown'"
+                            [class.text-red-500]="character.status === 'Dead'"
+                            class="block"
+                        >
+                        </fa-icon>
+                        {{ character.status | statusTranslate }}
+                    </p>
+                    <p><b>Espécie:</b> {{ character.species }}</p>
+                    <p><b>Gênero:</b> {{ character.gender }}</p>
+                    <p><b>Origem:</b> {{ character.origin.name }}</p>
+                    <p><b>Localização:</b> {{ character.location.name }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
 } @else {
     <p>Carregando detalhes do personagem...</p>
 }
