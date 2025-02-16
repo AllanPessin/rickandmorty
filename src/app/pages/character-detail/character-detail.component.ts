@@ -17,6 +17,8 @@ export class CharacterDetailComponent {
     errorMessage: string | null = null;
     faCircle = faCircle;
 
+    numberOfEpisodes: number = 5;
+
     constructor(
         private characterService: CharacterService,
         private route: ActivatedRoute
@@ -38,5 +40,9 @@ export class CharacterDetailComponent {
                 return (this.errorMessage = err);
             },
         });
+    }
+
+    loadMoreEpisodes() {
+        this.numberOfEpisodes++;
     }
 }

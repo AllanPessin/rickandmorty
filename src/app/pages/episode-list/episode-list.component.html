@@ -1,0 +1,8 @@
+<main class="px-4 md:px-10">
+    @if (episodes.length > 0) {
+        <div class="items-baseline justify-between py-5 lg:flex">
+            <h1 class="text-xl lg:text-2xl">Episódios de Ricky and Morty</h1>
+            <app-search (searchEvent)="searchEpisode($event)"></app-search>
+        </div>
+    }
+</main>

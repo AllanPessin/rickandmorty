@@ -60,7 +60,7 @@ export class CharacterService {
         if (type) params.append('type', type);
         if (gender) params.append('gender', gender);
 
-        return this.http.get<ApiResponse<Character>>(`${this.url}/character/?${params.toString()}`);
+        return this.http.get<ApiResponse<Character>>(`${this.url}/character/?${params}`);
     }
 
     getCharacterById(id: number): Observable<Character> {

@@ -1,6 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faChevronLeft, faChevronRight, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
@@ -40,10 +40,18 @@ export class CharacterListComponent implements OnInit {
     searchQuery: string = '';
     gender: string = '';
 
-    constructor(private characterService: CharacterService) {}
+    constructor(
+        private characterService: CharacterService,
+        private route: ActivatedRoute
+    ) {}
 
     ngOnInit(): void {
-        this.loadCharacters();
+        this.route.queryParams.subscribe((params) => {
+            if (params['gender']) {
+                this.gender = params['gender'];
+            }
+            this.loadCharacters();
+        });
     }
 
     loadCharacters(): void {
