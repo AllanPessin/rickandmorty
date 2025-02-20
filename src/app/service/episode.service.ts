@@ -35,7 +35,7 @@ export class EpisodeService {
         return this.http.get<ApiResponse<Episode>>(`${this.url}/episode`);
     }
 
-    getEpisodeById(id: number): Observable<ApiResponse<Episode>> {
-        return this.http.get<ApiResponse<Episode>>(`${this.url}/episode/${id}`);
+    getEpisodeById(id: number): Observable<Episode> {
+        return this.http.get<Episode>(`${this.url}/episode/${id}`);
     }
 }

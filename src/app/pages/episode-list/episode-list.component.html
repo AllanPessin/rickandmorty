@@ -4,5 +4,32 @@
             <h1 class="text-xl lg:text-2xl">Episódios de Ricky and Morty</h1>
             <app-search (searchEvent)="searchEpisode($event)"></app-search>
         </div>
+
+        <div class="grid grid-cols-2 gap-8">
+            @for (episode of episodes; track episode.id) {
+                <div class="flex items-center justify-between rounded-xl border border-black p-4">
+                    <div>
+                        <h2>{{ episode.name }}</h2>
+                        <p>{{ episode.episode }}</p>
+                        <p>Foi ao ar: {{ episode.created }}</p>
+                    </div>
+                    <div>
+                        <a
+                            [routerLink]="['/episodios', episode.id]"
+                            class="cursor-pointer rounded px-3 py-1 duration-200 ease-in hover:bg-gray-100 hover:text-white hover:shadow-sm"
+                        >
+                            Ver {{ episode.characters.length }} personagens
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <app-pagination
+            [currentPage]="currentPage"
+            [totalPages]="totalPages"
+            [pageSize]="pageSize"
+            [pageSizeOptions]="[10, 20, 50]"
+            (pageChange)="changePage($event)"
+        ></app-pagination>
     }
 </main>
