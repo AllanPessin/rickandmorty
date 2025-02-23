@@ -33,8 +33,6 @@ export class CharacterListComponent implements OnInit {
 
     currentPage: number = 1;
     totalPages: number = 1;
-    pageSize: number = 20;
-    totalResults: number = 0;
 
     selectedStatus: string = '';
     searchQuery: string = '';
@@ -69,7 +67,6 @@ export class CharacterListComponent implements OnInit {
                 next: (response: ApiResponse<Character>): void => {
                     this.characters = response.results;
                     this.totalPages = response.info.pages;
-                    this.totalResults = response.info.count;
                 },
                 error: (err: any): void => {
                     this.errorMessage = err.message;

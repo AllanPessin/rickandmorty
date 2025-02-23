@@ -12,8 +12,6 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 export class PaginationComponent {
     @Input() currentPage: number = 1;
     @Input() totalPages: number = 1;
-    @Input() pageSizeOptions: number[] = [10, 20, 30];
-    @Input() pageSize: number = 10;
     @Output() pageChange = new EventEmitter<number>();
     @Output() pageSizeChange = new EventEmitter<number>();
 

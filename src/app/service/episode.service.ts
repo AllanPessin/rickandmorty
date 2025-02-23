@@ -31,8 +31,11 @@ export class EpisodeService {
 
     constructor(private http: HttpClient) {}
 
-    getEpisode(): Observable<ApiResponse<Episode>> {
-        return this.http.get<ApiResponse<Episode>>(`${this.url}/episode`);
+    getEpisode(page?: number): Observable<ApiResponse<Episode>> {
+        let params = new URLSearchParams();
+        if (page) params.append('page', page.toString());
+
+        return this.http.get<ApiResponse<Episode>>(`${this.url}/episode/?${params}`);
     }
 
     getEpisodeById(id: number): Observable<Episode> {

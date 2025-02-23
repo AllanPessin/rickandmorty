@@ -11,7 +11,10 @@
                     <div>
                         <h2>{{ episode.name }}</h2>
                         <p>{{ episode.episode }}</p>
-                        <p>Foi ao ar: {{ episode.created }}</p>
+                        <p>
+                            Foi ao ar:
+                            {{ episode.created | date: "d 'de' MMMM 'de' y 'ás' hh:mm" }}
+                        </p>
                     </div>
                     <div>
                         <a
@@ -27,8 +30,6 @@
         <app-pagination
             [currentPage]="currentPage"
             [totalPages]="totalPages"
-            [pageSize]="pageSize"
-            [pageSizeOptions]="[10, 20, 50]"
             (pageChange)="changePage($event)"
         ></app-pagination>
     }

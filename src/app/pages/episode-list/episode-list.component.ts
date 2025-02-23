@@ -4,20 +4,20 @@ import { ApiResponse } from '../../service/character.service';
 import { SearchComponent } from '../../components/search/search.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { RouterModule } from '@angular/router';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-episode-list',
-    imports: [SearchComponent, PaginationComponent, RouterModule],
+    imports: [SearchComponent, PaginationComponent, RouterModule, CommonModule],
     templateUrl: './episode-list.component.html',
     styleUrl: './episode-list.component.css',
 })
 export class EpisodeListComponent implements OnInit {
     episodes: Episode[] = [];
     searchQuery: string = '';
+
     currentPage: number = 1;
     totalPages: number = 1;
-    pageSize: number = 20;
-    totalResults: number = 0;
 
     constructor(private episodeService: EpisodeService) {}
 
@@ -26,9 +26,9 @@ export class EpisodeListComponent implements OnInit {
     }
 
     loadEpisodes() {
-        this.episodeService.getEpisode().subscribe({
+        this.episodeService.getEpisode(this.currentPage).subscribe({
             next: (response: ApiResponse<Episode>) => {
-                console.log(response);
+                this.totalPages = response.info.pages;
                 this.episodes = response.results;
             },
         });
@@ -39,8 +39,9 @@ export class EpisodeListComponent implements OnInit {
         this.loadEpisodes();
     }
 
-    changePage(page: number): void {
-        if (this.currentPage >= 1 && this.currentPage <= this.totalPages) {
+    changePage(page: number) {
+        if (page >= 1 && page <= this.totalPages) {
+            this.currentPage = page;
             this.loadEpisodes();
         }
     }
