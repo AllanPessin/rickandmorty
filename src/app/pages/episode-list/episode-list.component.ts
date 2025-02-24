@@ -14,8 +14,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 })
 export class EpisodeListComponent implements OnInit {
     episodes: Episode[] = [];
-    searchQuery: string = '';
 
+    searchQuery: string = '';
     currentPage: number = 1;
     totalPages: number = 1;
 
@@ -26,7 +26,7 @@ export class EpisodeListComponent implements OnInit {
     }
 
     loadEpisodes() {
-        this.episodeService.getEpisode(this.currentPage).subscribe({
+        this.episodeService.getEpisode(this.currentPage, this.searchQuery).subscribe({
             next: (response: ApiResponse<Episode>) => {
                 this.totalPages = response.info.pages;
                 this.episodes = response.results;
@@ -36,6 +36,7 @@ export class EpisodeListComponent implements OnInit {
 
     searchEpisode(query: string | null): void {
         this.searchQuery = query || '';
+        this.currentPage = 1;
         this.loadEpisodes();
     }
 
