@@ -11,7 +11,4 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 })
 export class AppComponent {
     title = 'angular-app';
-    public throwTestError(): void {
-        throw new Error('Sentry Test Error');
-    }
 }
