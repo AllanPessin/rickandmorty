@@ -14,4 +14,9 @@ export class SearchComponent {
     onSearch(): void {
         this.searchEvent.emit(this.searchQuery.trim() ? this.searchQuery : null);
     }
+
+    onClear(): void {
+        this.searchQuery = '';
+        this.searchEvent.emit(this.searchQuery);
+    }
 }
