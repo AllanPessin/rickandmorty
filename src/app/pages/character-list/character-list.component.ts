@@ -7,8 +7,8 @@ import { FilterComponent } from '../../components/filter/filter.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { SearchComponent } from '../../components/search/search.component';
 import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
-import { Character, CharacterService } from '../../service/character.service';
-import { ApiResponse } from '../../service/episode.service';
+import { Character, CharacterService } from '../../service/character/character.service';
+import { ApiResponse } from '../../service/episode/episode.service';
 
 @Component({
     selector: 'app-character-list',
