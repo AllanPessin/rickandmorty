@@ -3,13 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { CardComponent } from '../../components/card/card.component';
 import { FilterComponent } from '../../components/filter/filter.component';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { SearchComponent } from '../../components/search/search.component';
-import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
 import { Character, CharacterService } from '../../service/character/character.service';
 import { ApiResponse } from '../../service/episode/episode.service';
-import { CardComponent } from '../../components/card/card.component';
 
 @Component({
     selector: 'app-character-list',
