@@ -52,7 +52,7 @@ export class EpisodeDetailComponent implements OnInit {
         const characterId = characterUrl.map((url) => url.split('/').pop()).join(',');
 
         this.characterService.getMultipleCharacter(characterId).subscribe({
-            next: (response): void => {
+            next: (response: Character[]): void => {
                 this.characters = response;
             },
         });
