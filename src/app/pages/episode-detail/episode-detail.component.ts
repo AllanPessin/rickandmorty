@@ -6,16 +6,17 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { Character, CharacterService } from '../../service/character/character.service';
 import { Episode, EpisodeService } from '../../service/episode/episode.service';
 import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
+import { CardComponent } from '../../components/card/card.component';
 
 @Component({
     selector: 'app-episode-detail',
-    imports: [CommonModule, RouterLink, FontAwesomeModule, StatusTranslatePipe],
+    imports: [CommonModule, FontAwesomeModule, CardComponent],
     templateUrl: './episode-detail.component.html',
     styleUrl: './episode-detail.component.css',
 })
 export class EpisodeDetailComponent implements OnInit {
     faCircle = faCircle;
-    episode: Episode | null = null;
+    episode!: Episode;
     errorMessage: string | null = null;
     characters: Character[] = [];
 
@@ -36,6 +37,7 @@ export class EpisodeDetailComponent implements OnInit {
         this.episodeService.getEpisodeById(id).subscribe({
             next: (response: Episode): void => {
                 this.episode = response;
+
                 if (this.episode.characters.length > 0) {
                     this.loadCharacters(this.episode.characters);
                 }
@@ -49,9 +51,9 @@ export class EpisodeDetailComponent implements OnInit {
     loadCharacters(characterUrl: string[]): void {
         const characterId = characterUrl.map((url) => url.split('/').pop()).join(',');
 
-        this.characterService.getCharacters(+characterId).subscribe({
+        this.characterService.getMultipleCharacter(characterId).subscribe({
             next: (response): void => {
-                this.characters = response.results;
+                this.characters = response;
             },
         });
     }

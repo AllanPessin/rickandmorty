@@ -9,6 +9,7 @@ import { SearchComponent } from '../../components/search/search.component';
 import { StatusTranslatePipe } from '../../pipe/translate/status-translate.pipe';
 import { Character, CharacterService } from '../../service/character/character.service';
 import { ApiResponse } from '../../service/episode/episode.service';
+import { CardComponent } from '../../components/card/card.component';
 
 @Component({
     selector: 'app-character-list',
@@ -18,8 +19,8 @@ import { ApiResponse } from '../../service/episode/episode.service';
         NgFor,
         SearchComponent,
         PaginationComponent,
-        StatusTranslatePipe,
         FilterComponent,
+        CardComponent,
     ],
     templateUrl: './character-list.component.html',
     styleUrl: './character-list.component.css',

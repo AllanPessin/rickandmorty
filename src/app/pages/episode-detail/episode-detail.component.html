@@ -1,49 +1,18 @@
 <section class="px-4 md:px-10">
-    <div class="col-span-4 lg:col-span-3">
-        <ul class="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2">
-            <li *ngFor="let character of characters">
-                <div class="flex flex-col rounded-xl bg-gray-200 md:flex-row">
-                    <a [routerLink]="['/personagens', character.id]">
-                        <img
-                            [src]="character.image"
-                            [alt]="character.name"
-                            class="h-full w-full rounded-s-none md:h-44 md:w-44 md:rounded-s-lg"
-                        />
-                    </a>
-                    <div class="flex flex-col gap-1 px-4 py-4">
-                        <a [routerLink]="['/personagens', character.id]">
-                            <h2
-                                class="text-lg font-bold text-white duration-200 ease-in hover:text-yellow lg:text-xl"
-                            >
-                                {{ character.name }}
-                            </h2>
-                        </a>
-                        <p class="flex items-center gap-1 text-white">
-                            <fa-icon
-                                [icon]="faCircle"
-                                size="xs"
-                                [class.text-green-500]="character.status === 'Alive'"
-                                [class.text-yellow]="character.status === 'unknown'"
-                                [class.text-red-500]="character.status === 'Dead'"
-                                class="block"
-                            >
-                            </fa-icon>
-                            {{ character.status | statusTranslate }}
-                        </p>
-                        <p class="text-white">
-                            <b>Espécie: </b>
-                            {{ character.species }}
-
-                            @if (character.type !== '') {
-                                | {{ character.type }}
-                            }
-
-                            | {{ character.gender }}
-                        </p>
-                        <p class="text-white"><b>Origem:</b> {{ character.origin.name }}</p>
-                    </div>
-                </div>
-            </li>
-        </ul>
+    <div class="items-baseline justify-between py-5 lg:flex">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-4">
+            <div class="col-span-4 py-5 lg:col-span-1">
+                <h1 class="text-xl lg:text-base">
+                    Personagens do episódio <b>{{ this.episode.name }}</b>
+                </h1>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+                <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    <li *ngFor="let character of characters">
+                        <app-card [character]="character"></app-card>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </section>

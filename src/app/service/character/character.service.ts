@@ -66,4 +66,8 @@ export class CharacterService {
     getCharacterById(id: number): Observable<Character> {
         return this.http.get<Character>(`${this.url}/character/${id}`);
     }
+
+    getMultipleCharacter(id: string) {
+        return this.http.get<Character[]>(`${this.url}/character/${id}`);
+    }
 }
