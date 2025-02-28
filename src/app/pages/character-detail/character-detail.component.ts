@@ -17,7 +17,7 @@ export class CharacterDetailComponent {
     errorMessage: string | null = null;
     faCircle = faCircle;
 
-    numberOfEpisodes: number = 5;
+    numberOfEpisodes: number = this.character?.episode.length || 5;
 
     constructor(
         private characterService: CharacterService,
