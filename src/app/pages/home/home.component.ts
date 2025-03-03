@@ -17,7 +17,6 @@ export class HomeComponent {
     ngOnInit(): void {
         this.characterService.getMultipleCharacter(this.listIdGenerate()).subscribe({
             next: (response: Character[]): void => {
-                console.log(response);
                 this.characters = response;
             },
         });
