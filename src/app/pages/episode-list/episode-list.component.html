@@ -5,21 +5,25 @@
             <app-search (searchEvent)="searchEpisode($event)"></app-search>
         </div>
 
-        <div class="grid grid-cols-2 gap-8">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
             @for (episode of episodes; track episode.id) {
-                <div class="flex items-center justify-between rounded-xl border border-black p-4">
+                <div
+                    class="flex flex-col items-center justify-between rounded-xl border border-black p-4 lg:flex-row"
+                >
                     <div>
-                        <h2>{{ episode.name }}</h2>
-                        <p>{{ episode.episode }}</p>
-                        <p>
+                        <div class="xs:flex-col flex gap-4 md:flex-row lg:flex-col lg:gap-0">
+                            <h2 class="text-sm lg:text-base">{{ episode.name }}</h2>
+                            <p class="text-sm lg:text-base">{{ episode.episode }}</p>
+                        </div>
+                        <p class="text-sm lg:text-base">
                             Foi ao ar:
                             {{ episode.created | date: "d 'de' MMMM 'de' y 'ás' hh:mm" }}
                         </p>
                     </div>
-                    <div>
+                    <div class="mt-4 lg:mt-0">
                         <a
                             [routerLink]="['/episodios', episode.id]"
-                            class="cursor-pointer rounded px-3 py-1 duration-200 ease-in hover:bg-gray-100 hover:text-white hover:shadow-sm"
+                            class="cursor-pointer rounded border border-black px-3 py-1 text-sm duration-200 ease-in hover:bg-gray-100 hover:text-white hover:shadow-sm"
                         >
                             Ver {{ episode.characters.length }} personagens
                         </a>
