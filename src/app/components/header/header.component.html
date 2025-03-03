@@ -1,15 +1,15 @@
 <header class="flex min-h-16 items-center justify-between">
-    <section class="w-[33%]">
+    <section class="hidden w-[33%] lg:block">
         <app-nav-link link="/" label="Inicial"></app-nav-link>
     </section>
 
-    <section class="flex w-[33%] justify-center">
+    <section class="flex w-[33%] items-center justify-center p-4">
         <a routerLink="/">
-            <img [src]="imagePath" alt="Logo" class="w-20" />
+            <img [src]="imagePath" alt="Logo" class="w-16 lg:w-20" />
         </a>
     </section>
 
-    <nav class="flex w-[33%] justify-end">
+    <nav class="hidden w-[33%] justify-end lg:flex">
         <ul class="flex items-center gap-2">
             @for (item of navLinks; track item.label) {
                 <li>
@@ -18,4 +18,36 @@
             }
         </ul>
     </nav>
+
+    <button class="block lg:hidden" (click)="toggleMenu()">
+        <fa-icon [icon]="faBars" size="lg" class="block"> </fa-icon>
+    </button>
+
+    <aside
+        class="fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out"
+        [class.opacity-0]="!isMenuOpen"
+        [class.pointer-events-none]="!isMenuOpen"
+        (click)="toggleMenu()"
+    >
+        <div
+            class="absolute right-0 top-0 h-full w-2/3 max-w-sm bg-white shadow-lg delay-150 duration-500 ease-in-out"
+            [class.translate-x-full]="!isMenuOpen"
+            (click)="$event.stopPropagation()"
+        >
+            <button class="m-8 flex justify-end">
+                <fa-icon [icon]="faTimes" size="lg" (click)="toggleMenu()"></fa-icon>
+            </button>
+
+            <nav class="mt-12 p-4">
+                <ul class="space-y-4">
+                    <app-nav-link link="/" label="Inicial"></app-nav-link>
+                    @for (item of navLinks; track item.label) {
+                        <li>
+                            <app-nav-link [link]="item.link" [label]="item.label"></app-nav-link>
+                        </li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </aside>
 </header>
