@@ -15,8 +15,8 @@ export interface ApiResponse<T> {
 
 export interface Location {
     id: number;
-    nam: string;
-    typ: string;
+    name: string;
+    type: string;
     dimension: string;
     residents: Array<string>;
     url: string;
