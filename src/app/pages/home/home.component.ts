@@ -1,7 +1,11 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { CardComponent } from '../../components/card/card.component';
-import { Character, CharacterService } from '../../service/character/character.service';
+import {
+    ApiResponse,
+    Character,
+    CharacterService,
+} from '../../service/character/character.service';
 
 @Component({
     selector: 'app-home',
@@ -15,6 +19,10 @@ export class HomeComponent {
     constructor(private characterService: CharacterService) {}
 
     ngOnInit(): void {
+        this.loadRandomCharacters();
+    }
+
+    loadRandomCharacters() {
         this.characterService.getMultipleCharacter(this.listIdGenerate()).subscribe({
             next: (response: Character[]): void => {
                 this.characters = response;
