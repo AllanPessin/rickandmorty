@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Episode, EpisodeService } from '../../service/episode/episode.service';
-import { ApiResponse } from '../../service/character/character.service';
-import { SearchComponent } from '../../components/search/search.component';
-import { PaginationComponent } from '../../components/pagination/pagination.component';
 import { RouterModule } from '@angular/router';
-import { CommonModule, DatePipe } from '@angular/common';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { SearchComponent } from '../../components/search/search.component';
+import { ApiResponse } from '../../service/character/character.service';
+import { Episode, EpisodeService } from '../../service/episode/episode.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-episode-list',
