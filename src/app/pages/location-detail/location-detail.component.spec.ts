@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationDateilsComponent } from './location-dateils.component';
+import { LocationDetailComponent } from './location-detail.component';
 
-describe('LocationDateilsComponent', () => {
-  let component: LocationDateilsComponent;
-  let fixture: ComponentFixture<LocationDateilsComponent>;
+describe('LocationDetailComponent', () => {
+  let component: LocationDetailComponent;
+  let fixture: ComponentFixture<LocationDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocationDateilsComponent]
+      imports: [LocationDetailComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LocationDateilsComponent);
+    fixture = TestBed.createComponent(LocationDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

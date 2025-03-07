@@ -4,8 +4,8 @@ import { CharacterListComponent } from './pages/character-list/character-list.co
 import { EpisodeDetailComponent } from './pages/episode-detail/episode-detail.component';
 import { EpisodeListComponent } from './pages/episode-list/episode-list.component';
 import { HomeComponent } from './pages/home/home.component';
-import { LocationDateilsComponent } from './pages/location-dateils/location-dateils.component';
 import { LocationListComponent } from './pages/location-list/location-list.component';
+import { LocationDetailComponent } from './pages/location-detail/location-detail.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -14,6 +14,6 @@ export const routes: Routes = [
     { path: 'episodios', component: EpisodeListComponent },
     { path: 'episodios/:id', component: EpisodeDetailComponent },
     { path: 'localizacoes', component: LocationListComponent },
-    { path: 'localizacoes/:id', component: LocationDateilsComponent },
+    { path: 'localizacoes/:id', component: LocationDetailComponent },
     { path: '**', redirectTo: '/' },
 ];
