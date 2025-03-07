@@ -28,6 +28,7 @@ export class LocationListComponent implements OnInit {
         this.locationService.getLocation().subscribe({
             next: (response: ApiResponse<Location>) => {
                 this.locations = response.results;
+                this.totalPages = response.info.pages;
             },
         });
     }

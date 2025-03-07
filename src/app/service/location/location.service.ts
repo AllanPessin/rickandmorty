@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment.development';
 
 export interface ApiResponse<T> {
     info: {
@@ -33,5 +33,9 @@ export class LocationService {
 
     getLocation(): Observable<ApiResponse<Location>> {
         return this.http.get<ApiResponse<Location>>(`${this.url}/location`);
+    }
+
+    getLocationById(id: number): Observable<Location> {
+        return this.http.get<Location>(`${this.url}/location/${id}`);
     }
 }
