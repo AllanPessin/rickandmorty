@@ -1,19 +1,19 @@
-<div class="my-4 flex items-center justify-end gap-8 border-t p-4">
+<div class="my-4 flex items-center justify-center gap-8 border-t p-4 md:justify-end">
     <button
         (click)="onPageChange(currentPage - 1)"
         [disabled]="currentPage === 1"
-        class="rounded bg-gray-300 px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        class="rounded bg-gray-300 p-1 text-xs hover:bg-gray-400 disabled:opacity-50 md:px-2 md:py-2 md:text-base"
     >
         <fa-icon [icon]="faChevronLeft" size="xs"></fa-icon>
         Anterior
     </button>
 
-    <span>Página {{ currentPage }} de {{ totalPages }}</span>
+    <span class="text-sm md:text-base">Página {{ currentPage }} de {{ totalPages }}</span>
 
     <button
         (click)="onPageChange(currentPage + 1)"
         [disabled]="currentPage === totalPages"
-        class="rounded bg-gray-300 px-4 py-2 hover:bg-gray-400 disabled:opacity-50"
+        class="rounded bg-gray-300 p-1 text-xs hover:bg-gray-400 disabled:opacity-50 md:px-2 md:py-2 md:text-base"
     >
         Próxima
         <fa-icon [icon]="faChevronRight" size="xs"></fa-icon>
