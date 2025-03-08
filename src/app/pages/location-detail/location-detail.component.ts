@@ -44,7 +44,7 @@ export class LocationDetailComponent implements OnInit {
 
         this.characterService.getMultipleCharacter(characterId).subscribe({
             next: (response: Character[]): void => {
-                this.characters = response;
+                this.characters = Array.isArray(response) ? response : [response];
             },
         });
     }

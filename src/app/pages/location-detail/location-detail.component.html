@@ -1,24 +1,23 @@
 <section class="px-4 md:px-10">
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-        <aside class="rounded-2xl bg-white p-4 shadow-xl md:col-span-1">
-            <!-- <div class="col-span-4 py-5"> -->
-            <h1 class="text-xl">
-                Personagens da localização <b>{{ location?.name }}</b>
-            </h1>
-            <p>
-                A {{ this.location?.name }} fica localizada em {{ this.location?.dimension }}, são
-                {{ this.location?.residents?.length }} personagens vistos pela ultima vez neste
-                local
-            </p>
-            <!-- </div> -->
-        </aside>
-
-        <div class="col-span-2">
-            <ul class="grid grid-cols-1 gap-4">
-                <li *ngFor="let character of characters">
-                    <app-card [character]="character"></app-card>
-                </li>
-            </ul>
+    <div class="items-baseline justify-between py-5 lg:flex">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-4">
+            <div class="col-span-4 py-5 lg:col-span-1">
+                <h1 class="text-xl">
+                    Personagens da localização <b>{{ location?.name }}</b>
+                </h1>
+                <p>
+                    A {{ this.location?.name }} fica localizada em {{ this.location?.dimension }},
+                    são {{ this.location?.residents?.length }} personagens vistos pela ultima vez
+                    neste local
+                </p>
+            </div>
+            <div class="col-span-4 lg:col-span-3">
+                <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    <li *ngFor="let character of characters">
+                        <app-card [character]="character"></app-card>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
