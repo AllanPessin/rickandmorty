@@ -4,16 +4,20 @@ import { Character, CharacterService } from '../../service/character/character.s
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from '../../components/card/card.component';
+import { SkeletonCardComponent } from '../../components/skeleton-card/skeleton-card.component';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-location-detail',
-    imports: [CommonModule, CardComponent],
+    imports: [CommonModule, CardComponent, SkeletonCardComponent],
     templateUrl: './location-detail.component.html',
     styleUrl: './location-detail.component.css',
 })
 export class LocationDetailComponent implements OnInit {
     location: Location | null = null;
     characters: Character[] = [];
+
+    isLoading: boolean = false;
 
     constructor(
         private locationService: LocationService,
@@ -28,15 +32,20 @@ export class LocationDetailComponent implements OnInit {
     }
 
     loadLocationById(id: number): void {
-        this.locationService.getLocationById(id).subscribe({
-            next: (response: Location): void => {
-                this.location = response;
+        this.isLoading = true;
+        this.locationService
+            .getLocationById(id)
+            .pipe(delay(300))
+            .subscribe({
+                next: (response: Location): void => {
+                    this.location = response;
+                    this.isLoading = false;
 
-                if (this.location.residents.length > 0) {
-                    this.loadCharacters(this.location.residents);
-                }
-            },
-        });
+                    if (this.location.residents.length > 0) {
+                        this.loadCharacters(this.location.residents);
+                    }
+                },
+            });
     }
 
     loadCharacters(characterUrl: string[]): void {

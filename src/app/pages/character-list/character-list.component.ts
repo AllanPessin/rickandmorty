@@ -9,6 +9,8 @@ import { PaginationComponent } from '../../components/pagination/pagination.comp
 import { SearchComponent } from '../../components/search/search.component';
 import { Character, CharacterService } from '../../service/character/character.service';
 import { ApiResponse } from '../../service/episode/episode.service';
+import { SkeletonCardComponent } from '../../components/skeleton-card/skeleton-card.component';
+import { delay } from 'rxjs';
 
 @Component({
     selector: 'app-character-list',
@@ -20,6 +22,7 @@ import { ApiResponse } from '../../service/episode/episode.service';
         PaginationComponent,
         FilterComponent,
         CardComponent,
+        SkeletonCardComponent,
     ],
     templateUrl: './character-list.component.html',
     styleUrl: './character-list.component.css',
@@ -36,6 +39,8 @@ export class CharacterListComponent implements OnInit {
     searchQuery: string = '';
     gender: string = '';
 
+    isLoading: boolean = false;
+
     constructor(
         private characterService: CharacterService,
         private route: ActivatedRoute
@@ -51,6 +56,7 @@ export class CharacterListComponent implements OnInit {
     }
 
     loadCharacters(): void {
+        this.isLoading = true;
         this.characterService
             .getCharacters(
                 undefined,
@@ -61,10 +67,12 @@ export class CharacterListComponent implements OnInit {
                 undefined,
                 this.gender
             )
+            .pipe(delay(300))
             .subscribe({
                 next: (response: ApiResponse<Character>): void => {
                     this.characters = response.results;
                     this.totalPages = response.info.pages;
+                    this.isLoading = false;
                 },
                 error: (err: any): void => {
                     this.errorMessage = err.message;

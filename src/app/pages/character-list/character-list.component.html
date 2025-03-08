@@ -1,5 +1,5 @@
 <section class="px-4 md:px-10">
-    @if (characters.length > 0) {
+    @if (characters.length > 0 || isLoading) {
         <div class="items-baseline justify-between py-5 lg:flex">
             <h1 class="text-xl lg:text-2xl">Personagens de Ricky and Morty</h1>
             <app-search (searchEvent)="searchCharacter($event)"></app-search>
@@ -16,9 +16,15 @@
 
             <div class="col-span-4 lg:col-span-3">
                 <ul class="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2">
-                    <li *ngFor="let character of characters">
-                        <app-card [character]="character"></app-card>
-                    </li>
+                    @if (isLoading) {
+                        <li *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+                            <app-skeleton-card></app-skeleton-card>
+                        </li>
+                    } @else {
+                        <li *ngFor="let character of characters">
+                            <app-card [character]="character"></app-card>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
