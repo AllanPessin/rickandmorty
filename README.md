@@ -1,59 +1,58 @@
-# AngularApp
+# Rick and Morty App
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
+Este projeto é uma aplicação criada em Angular 19 que consome a API do Rick and Morty para exibir informalções sobre os personagens, episódio e localizações.
 
-## Development server
+## Acesso o projeto na Vercel
 
-To start a local development server, run:
+Rick and morty App [rickandmorty.vercel.app](https://rickandmorty-angular19.vercel.app/)
 
-```bash
-ng serve
-```
+## Funcionalidades
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Listagem de personagens
+- Detalhes completos de cada personagem
+- Filtro de personagens por gênero e status
+- Pesquisa por nome de personagem
+- Pesquisa por nome de episódio
+- Listagem e episódio
+- Detalhes de episódio
+- Listagem de localizações
+- Páginação de personagen, episódios e localizações
 
-## Code scaffolding
+## Tecnologias
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- API Rick and Morty: [https://rickandmortyapi.com/](https://rickandmortyapi.com/)
+- TailwindCSS: [https://tailwindcss.com/](https://tailwindcss.com/)
+- Prettier: [https://prettier.io/](https://prettier.io/)
 
-```bash
-ng generate component component-name
-```
+## Como Executar o Projeto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Pré-requisitos
 
-```bash
-ng generate --help
-```
+- Node.js 22^
+- npm 10^
 
-## Building
+### Passos para execução
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1. Clone o repositório.
 
 ```bash
-ng test
+git clone https://github.com/AllanPessin/rickandmorty.git
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+2. Entre na pasta do projeto
 
 ```bash
-ng e2e
+cd rickandmorty
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+3. Instale as dependências
 
-## Additional Resources
+```bash
+npm install
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. Execute o projeto
+
+```bash
+npm run start
+```
